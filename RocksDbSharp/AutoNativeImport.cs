@@ -18,7 +18,7 @@ namespace NativeImport
     {
         /// <summary>
         /// Imports the library by name (without extensions) locating it based on platform.
-        /// 
+        ///
         /// Use <code>suppressUnload</code> to prevent the dll from unloading at finalization,
         /// which can be useful if you need to call the imported functions in finalizers of
         /// other instances and can't predict in which order the finalization will occur
@@ -372,12 +372,7 @@ namespace NativeImport
             string nativeCodeBase = null;
             try
             {
-                var nativeLibName = new AssemblyName("RocksDbNative");
-                var native = Assembly.Load(nativeLibName);
-                var nativePkgClass = native.GetTypes().First(t => t.FullName == "RocksDbSharp.NativePackage");
-                var getCodeBaseMethod = nativePkgClass.GetTypeInfo().GetMethod("GetCodeBase");
-                var getCodeBase = getCodeBaseMethod.CreateDelegate<Func<string>>();
-                nativeCodeBase = getCodeBase();
+                nativeCodeBase = AppDomain.CurrentDomain.BaseDirectory;
             }
             catch (Exception)
             {
