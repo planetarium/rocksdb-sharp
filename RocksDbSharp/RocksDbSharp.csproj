@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Title>RocksDbSharp</Title>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <Version>$(RocksDbVersion).$(RocksDbSharpBuild)-planetarium</Version>
+    <Version>$(RocksDbVersion).$(RocksDbSharpBuild)</Version>
     <AssemblyTitle>Planetarium.RocksDbSharp</AssemblyTitle>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
