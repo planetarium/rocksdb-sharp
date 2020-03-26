@@ -41,7 +41,7 @@ namespace RocksDbSharp
             Marshal.Copy(result, ptrs, 0, (int)lencf);
             string[] strings = new string[(ulong)lencf];
             for (ulong i = 0; i < (ulong)lencf; i++)
-                strings[i] = Marshal.PtrToStringUni(ptrs[i]);
+                strings[i] = Marshal.PtrToStringAnsi(ptrs[i]);
             rocksdb_list_column_families_destroy(result, lencf);
             return strings;
         }

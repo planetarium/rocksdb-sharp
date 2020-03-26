@@ -128,7 +128,7 @@ namespace Transitional
         {
             var ptr = new IntPtr((void*)bytes);
             if (ReferenceEquals(encoding, Encoding.ASCII))
-                return Marshal.PtrToStringUni(ptr, count);
+                return Marshal.PtrToStringAnsi(ptr, count);
             // An ugly double copy which is necessary in older frameworks without the unsafe GetString()
             byte[] temp = new byte[count];
             Marshal.Copy(ptr, temp, 0, count);

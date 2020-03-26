@@ -141,7 +141,7 @@ namespace NativeImport
                 try
                 {
                     buf = Marshal.AllocHGlobal(8192);
-                    return (0 == uname(buf)) ? Marshal.PtrToStringUni(buf) : "Unknown";
+                    return (0 == uname(buf)) ? Marshal.PtrToStringAnsi(buf) : "Unknown";
                 }
                 catch
                 {
@@ -160,7 +160,7 @@ namespace NativeImport
                 var lib = dlopen(path, 2);
                 var errPtr = dlerror();
                 if (errPtr != IntPtr.Zero)
-                    throw new NativeLoadException("dlopen: " + Marshal.PtrToStringUni(errPtr), null);
+                    throw new NativeLoadException("dlopen: " + Marshal.PtrToStringAnsi(errPtr), null);
                 return lib;
             }
 
