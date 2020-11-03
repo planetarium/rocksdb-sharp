@@ -269,7 +269,11 @@ namespace RocksDbSharp
         {
             var cf = GetColumnFamily(name);
             Native.Instance.rocksdb_drop_column_family(Handle, cf.Handle);
-            columnFamilies.Remove(name);
+            if (columnFamilies.TryGetValue(name, out ColumnFamilyHandleInternal cfhi))
+            {
+                cfhi.Dispose();
+                columnFamilies.Remove(name);
+            }
         }
         
         public ColumnFamilyHandle GetDefaultColumnFamily()
