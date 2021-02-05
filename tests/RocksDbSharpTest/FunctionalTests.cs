@@ -25,7 +25,13 @@ namespace RocksDbSharpTest
                 Directory.Delete(testdir, true);
             Directory.CreateDirectory(testdir);
 
-            var options = new DbOptions()
+            var options = new DbOptions();
+            var rocksDbException = Assert.Throws<RocksDbException>(() => RocksDb.Open(options, path));
+            Assert.Equal(
+                $"Invalid argument: {path}: does not exist (create_if_missing is false)",
+                rocksDbException.Message);
+
+            options = new DbOptions()
                 .SetCreateIfMissing(true)
                 .EnableStatistics();
 
